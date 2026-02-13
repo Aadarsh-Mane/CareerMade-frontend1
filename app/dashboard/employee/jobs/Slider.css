@@ -1,0 +1,60 @@
+/* level settings 👇 */
+.slider {
+  --slider-width: 100%;
+  --slider-height: 6px;
+  --slider-bg: rgb(82, 82, 82);
+  --slider-border-radius: 999px;
+
+  /* level (progress fill color) */
+  --level-color: #000; /* 👈 black progress */
+  --level-transition-duration: 0.1s;
+
+  /* icon */
+  --icon-margin: 15px;
+  --icon-color: var(--slider-bg);
+  --icon-size: 25px;
+}
+
+.slider {
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.slider .volume {
+  display: inline-block;
+  margin-right: var(--icon-margin);
+  color: var(--icon-color);
+  width: var(--icon-size);
+  height: auto;
+}
+
+.slider .level {
+  appearance: none;
+  width: var(--slider-width);
+  height: var(--slider-height);
+  background: var(--slider-bg);
+  overflow: hidden;
+  border-radius: var(--slider-border-radius);
+  transition: height var(--level-transition-duration);
+  cursor: inherit;
+}
+
+/* progress fill (magic happens here 👇) */
+.slider .level::-webkit-slider-thumb {
+  appearance: none;
+  width: 0;
+  height: 0;
+  box-shadow: -200px 0 0 200px var(--level-color);
+}
+
+.slider .level::-moz-range-thumb {
+  width: 0;
+  height: 0;
+  box-shadow: -200px 0 0 200px var(--level-color);
+}
+
+.slider:hover .level {
+  height: calc(var(--slider-height) * 2);
+}
